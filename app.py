@@ -4,11 +4,23 @@ from flask_wtf.csrf import CSRFProtect
 app = Flask(__name__)
 
 csrf = CSRFProtect()
-csrf.init_app(app) # Compliant
+csrf.init_app(app)  # Compliant
+
 
 @app.route("/")
 def pagina_inicial():
-    return "Hello World, Dyego Maas!"
+    return "Laboratório Pipeline DevOps"
+
+
+@app.route('/bug')
+def bad():
+    try:
+        raise TypeError()
+    except TypeError as e:
+        print(e)
+    except TypeError as e:
+        print("Duplicado, ou seja, nunca vai entrar aqui.")
+
 
 if __name__ == '__main__':
     app.run()
