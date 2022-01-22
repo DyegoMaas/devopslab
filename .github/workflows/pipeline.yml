@@ -24,6 +24,7 @@ jobs:
         run: python -m unittest -v test
 
   SonarCloud:
+    needs: [Build]
     name: SonarCloud
     runs-on: ubuntu-latest
     steps:
@@ -37,7 +38,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
   Deploy:
-    needs: [Build,SonarCloud]
+    needs: [Build, SonarCloud]
     runs-on: ubuntu-latest
 
     steps:
